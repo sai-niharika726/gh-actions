@@ -4,8 +4,6 @@ on:
     branches:
       - main
   
-  
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,7 +11,7 @@ jobs:
       - name: pulling code from github
         uses: actions/checkout@v4
         with:
-          repository: sai-niharika726/DEVOPS/fruit-apps-store
+          repository: sai-niharika726/DEVOPS/Fruit-app-store
           ref: master
 
       - name: Building docker image
