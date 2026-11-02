@@ -13,9 +13,12 @@ jobs:
         with:
           repository: sai-niharika726/DEVOPS
           ref: master
-
+          
+  
       - name: Building docker image
-        run: docker build -t myimage .
+        run: 
+          cd Fruit-app-store
+          docker build -t myimage .
 
       - name: success
         if: success()
