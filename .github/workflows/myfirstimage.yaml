@@ -15,6 +15,9 @@ jobs:
           ref: master
           
       - name: Building docker image
+        env:
+          username: ${secret.username}
+          password: ${secret.password}
         run: |
           cd Fruit-app-store
           sudo apt updatesudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
