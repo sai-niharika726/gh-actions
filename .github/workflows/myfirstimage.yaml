@@ -20,7 +20,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
         run: |
           cd Fruit-app-store
-          docker login --username "$username" --password-stdin
+          docker login --username "$username" --password "$password"
           docker build -t myimage .
           docker tag myimage bsainiharika/ghaction:v1
           docker push bsainiharika/ghaction:v1
