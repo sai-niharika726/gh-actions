@@ -9,7 +9,7 @@ jobs:
       - name: pulling code from github
         uses: actions/checkout@v4
         with:
-          repository: sai-niharika/726/DEVOPS/Fruit-app-store
+          repository: sai-niharika726/DEVOPS/fruit-apps-store
           ref: master
 
       - name: Building docker image
