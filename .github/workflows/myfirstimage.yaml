@@ -1,0 +1,24 @@
+name: fruit-store
+on:
+  workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pulling code from github
+        uses: actions/checkout@v4
+        with:
+          repository: sai-niharika/726/DEVOPS/Fruit-app-store
+          ref: master
+
+      - name: Building docker image
+        run: docker build -t myimage .
+
+      - name: success
+        if: success()
+        run: echo "build success"
+
+      - name: failure
+        if: failure()
+        run: echo "build failed"
