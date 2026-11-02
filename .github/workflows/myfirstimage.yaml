@@ -14,10 +14,11 @@ jobs:
           repository: sai-niharika726/DEVOPS
           ref: master
           
-  
       - name: Building docker image
-        run: 
+        run: |
           cd Fruit-app-store
+          sudo yum install docker -y
+          systemctl status docker
           docker build -t myimage .
 
       - name: success
