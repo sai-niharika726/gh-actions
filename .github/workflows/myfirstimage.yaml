@@ -23,7 +23,7 @@ jobs:
           sudo apt install docker.io -y
           sudo systemctl start docker
           sudo systemctl enable docker
-          docker login -u $username - $password
+          docker login --username $username --password $password
           docker build -t myimage .
 
       - name: success
