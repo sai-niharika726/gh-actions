@@ -16,15 +16,15 @@ jobs:
           
       - name: Building docker image
         env:
-          username: ${secrets.USERNAME}
-          password: ${secrets.PASSWORD}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
         run: |
           cd Fruit-app-store
           sudo apt install docker.io -y
           sudo systemctl start docker
           sudo systemctl enable docker
-          docker login --username $username --password $password-stdin
-          docker build -t myimage .
+          docker login --username "$username" --password-stdin
+          docker build -t myimage 
 
       - name: success
         if: success()
