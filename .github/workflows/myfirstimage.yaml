@@ -19,6 +19,7 @@ jobs:
           cd Fruit-app-store
           sudo yum install docker -y
           systemctl status docker
+          docker login 
           docker build -t myimage .
 
       - name: success
