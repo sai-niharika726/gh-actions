@@ -20,11 +20,11 @@ jobs:
           password: ${{ secrets.PASSWORD }}
         run: |
           cd Fruit-app-store
-          sudo apt install docker.io -y
-          sudo systemctl start docker
-          sudo systemctl enable docker
           docker login --username "$username" --password-stdin
-          docker build -t myimage 
+          docker build -t myimage .
+          docker tag myimage bsainiharika/ghaction:v1
+          docker push bsainiharika/ghaction:v1
+          
 
       - name: success
         if: success()
