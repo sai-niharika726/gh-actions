@@ -16,8 +16,8 @@ jobs:
           
       - name: Building docker image
         env:
-          username: ${secret.username}
-          password: ${secret.password}
+          username: ${secret.USERNAME}
+          password: ${secret.PASSWORD}
         run: |
           cd Fruit-app-store
           sudo apt install docker.io -y
