@@ -13,23 +13,26 @@ jobs:
         with:
           repository: sai-niharika726/DEVOPS
           ref: master
-          
-      - name: Building docker image
-        env:
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-        run: |
-          cd Fruit-app-store
-          docker login --username "$username" --password "$password"
-          docker build -t myimage .
-          docker tag myimage bsainiharika/ghaction:v1
-          docker push bsainiharika/ghaction:v1
+    image:
+      needs: build
+      runs-on: ubuntu-latest
+      steps:
+       - name: Building docker image
+         env:
+           username: ${{ secrets.USERNAME }}
+           password: ${{ secrets.PASSWORD }}
+         run: |
+           cd Fruit-app-store
+           docker login --username "$username" --password "$password"
+           docker build -t myimage .
+           docker tag myimage bsainiharika/ghaction:v1
+           docker push bsainiharika/ghaction:v1
           
 
-      - name: success
-        if: success()
-        run: echo "build success"
+       - name: success
+         if: success()
+         run: echo "build success"
 
-      - name: failure
-        if: failure()
-        run: echo "build failed"
+       - name: failure
+         if: failure()
+         run: echo "build failed"
