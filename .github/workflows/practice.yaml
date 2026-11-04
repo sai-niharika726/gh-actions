@@ -19,11 +19,11 @@ jobs:
   matrix-practice:
     strategy: 
       matrix:
-        os: [ubunutu-latest, windows-latest"
+        os: [ubunutu-latest, windows-latest]
         version: [1,2]
     runs-on : ${{ matrix.os }}
     steps:
       - name: show matrix values
-    run:
-       echo ${{ matrix.os }} and ${{ matrix.version }}
+        run:
+          echo ${{ matrix.os }} and ${{ matrix.version }}
          
