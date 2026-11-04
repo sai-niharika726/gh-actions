@@ -1,0 +1,30 @@
+name: reusable workflow
+on:
+ workflow_call: 
+  inputs:
+    env_name:
+      type: string
+      required: true
+      
+    replicas: 
+       type: number
+       default : 2
+
+    debug:
+        type: boolean
+        default: false
+     
+jobs:
+  build:
+  runs-on: ubuntu-latest
+  steps:
+    -  name: Setting env variables and secrets
+       run:
+          echo ${{ inputs.env_name }},${{ inputs.repliacs }},${{ inputs.debug }}
+        
+
+
+        
+        
+       
+         
