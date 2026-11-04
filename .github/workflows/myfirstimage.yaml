@@ -30,7 +30,7 @@ jobs:
       - name: Save image as file
         run: docker save myimage -o image.tar
       - name: Uplaod artifact
-        uses: actions/upload=artifact@v4
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image
           path: image.tar
