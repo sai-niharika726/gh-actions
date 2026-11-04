@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Testing env variables and secrets
         env:
-          APP_NAME: $ {{ vars.APP_NAME }}
-          FAKE_KEY: $ {{ secrets.FAKE_KEY }}
+          APP_NAME: $ {{vars.APP_NAME}}
+          FAKE_KEY: $ {{secrets.FAKE_KEY}}
         run: |
           echo "App name is $APP_NAME"
           echo "App secret is $FAKE_KEY"
