@@ -1,0 +1,22 @@
+name: This is testing for reusuable workflow
+on:
+ workflow_dispatch: 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dev workflow
+        uses: ./.github/workflows/reusable-workflow.yaml 
+        with:
+          env_name: dev
+
+       
+      - name: Prod workflow
+        uses: ./.github/workflows/reusable-workflow.yaml
+        with:
+          env_name: prod
+          replicas: 5
+ 
+        
+          
