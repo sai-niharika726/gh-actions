@@ -17,13 +17,13 @@ jobs:
           echo "App secret is $FAKE_KEY"
 
   matrix-practice:
-     strategy: 
-       matrix:
-         os: [ubunutu-latest, windows-latest"
-         version: [1,2]
-     runs-on : ${{ matrix.os }}
-     steps:
-       - name: show matrix values
-     run:
-        echo ${{ matrix.os }} and ${{ matrix.version }}
+    strategy: 
+      matrix:
+        os: [ubunutu-latest, windows-latest"
+        version: [1,2]
+    runs-on : ${{ matrix.os }}
+    steps:
+      - name: show matrix values
+    run:
+       echo ${{ matrix.os }} and ${{ matrix.version }}
          
