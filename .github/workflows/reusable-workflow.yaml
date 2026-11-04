@@ -16,11 +16,10 @@ on:
      
 jobs:
   build:
-  runs-on: ubuntu-latest
-  steps:
-    -  name: Setting env variables and secrets
-       run:
-          echo ${{ inputs.env_name }},${{ inputs.repliacs }},${{ inputs.debug }}
+   runs-on: ubuntu-latest
+   steps:
+     - name: Setting env variables and secrets
+       run: echo ${{ inputs.env_name }},${{ inputs.replicas }},${{ inputs.debug }}
         
 
 
