@@ -51,7 +51,7 @@ jobs:
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }} 
            run: |
-          
+              docker login --username "$username" --password "$password"
               docker tag myimage bsainiharika/ghaction:v1
               docker push bsainiharika/ghaction:v1
           
