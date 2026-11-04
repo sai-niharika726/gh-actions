@@ -34,6 +34,7 @@ jobs:
        steps:
          - name: Pushing image to dockerhub
            run: |
+              docker images
               docker tag myimage bsainiharika/ghaction:v1
               docker push bsainiharika/ghaction:v1
           
