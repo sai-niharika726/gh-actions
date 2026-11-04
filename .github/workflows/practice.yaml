@@ -1,1 +1,15 @@
-name: practice 
+name: Testing GH actions
+on:
+ push:
+   branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Testing env variables and secrets
+        env:
+          APP_NAME: $ {{ variables.APP_NAME }}
+          FAKE_KEY: $ {{ secrets.FAKE_KEY }}
+        run: echo "Testing the GH actions"
