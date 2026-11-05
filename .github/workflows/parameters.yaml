@@ -20,7 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: prints the values choosen by user
-        run: echo "${{ inputs.environment }} and ${{ inputs.dryrun }} and ${{ inputs.version }}" 
+        run: echo "${{ inputs.environment }} and ${{ inputs.dryrun }} and ${{ inputs.version }}"
+
+  deploy:
+     needs: validate
+     steps:
+       - name: abc
+         if: ${{ inputs.dryrun == "false" }}
+         run: echo "Deploying $version to $environment "
+        
+
+    
 
  
     
