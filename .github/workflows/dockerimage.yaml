@@ -1,47 +1,47 @@
 name: Building a docker image for fruit-app service
-on:
- push:
-   branches:
-     - master
-     - main
-     
-     
-jobs:
-  pull code:
-  runs-on: ubuntu-latest
-  steps:
-     - name: pull code from github
-       uses: actions/checkout@v5
-       repository: sai-niharika726/DEVOPS
-       
-     - name: build a docker image
-       env:
-         username: ${{ variables.DOCKER_USERNAME }} 
-         password: ${{ secrets.DOCKER_PASSWORD }}
-       run : |
-        docker --version
-        docker login --username "$username" --password "$password"
-        docker build -t myimage Fruit-app-store
-        docker images
-       uses: action/uplaod-artifact@v5
-       with:
-         name: docker-images
-         path: imageartifacts
-        
 
-   Push image to docker hub:
-     needs: pull code
-     runs-on: ubuntu-latest
-     steps:
-        - name: copy artifacts from pull code job
-          uses: actions/download-artifact@v5
-          with: 
-             name: docker-images
-          run: |
-             ls
-             docker images
-           
-        - name: docker tag and push image to dockerhub
-          run: |
-              docker tag myimage $username/ghactions-artifact:v1
-              docker push $username/ghactions-artifact:v1
+on:
+  push:
+    branches:
+      - master
+      - main
+
+jobs:
+  pull-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pull code from github
+        uses: actions/checkout@v5
+        with:
+          repository: sai-niharika726/DEVOPS
+          ref: master
+
+      - name: build a docker image
+        env:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+        run: |
+          docker --version
+          docker login --username "$username" --password "$password"
+          docker build -t myimage Fruit-app-store
+          docker images
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v5
+        with:
+          name: docker-images
+          path: imageartifacts
+
+  push-image-to-docker-hub:
+    needs: pull-code
+    runs-on: ubuntu-latest
+    steps:
+      - name: copy artifacts from pull code job
+        uses: actions/download-artifact@v5
+        with:
+          name: docker-images
+
+      - name: docker tag and push image to dockerhub
+        run: |
+          docker tag myimage $username/ghactions-artifact:v1
+          docker push $username/ghactions-artifact:v1
