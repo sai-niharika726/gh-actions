@@ -1,7 +1,5 @@
 name: reusable workflow file
 on:
- push:
- workflow_dispatch:
  workflow_call:
    inputs:
      service_name: 
@@ -14,8 +12,8 @@ on:
        type: number
        default: 2
      log_level:
-      type: string
-      default: info
+       type: string
+       default: info
    secrets:
      API_TOKEN:
        required: true
