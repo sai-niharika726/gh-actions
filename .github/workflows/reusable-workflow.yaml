@@ -33,8 +33,9 @@ jobs:
     - name: Deploying
       env:
         secrets: ${{ secrets.API_TOKEN }}
-      run: test -n "$API_TOKEN" && echo "Token is set"
-      run: echo "Deployed  ${{ inputs.service_name }} with ${{ inputs.replicas }} in ${{ inputs.env_name }} and ${{ inputs.log_level }}
+      run: |
+         test -n "$API_TOKEN" && echo "Token is set"
+         echo "Deployed  ${{ inputs.service_name }} with ${{ inputs.replicas }} in ${{ inputs.env_name }} and ${{ inputs.log_level }}
       
    
 
