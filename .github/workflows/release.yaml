@@ -1,0 +1,30 @@
+name: caller-workflow
+on:
+ workflow_dispatch: 
+
+jobs:
+  dev:
+    uses: ./.github/workflows/reusable-workflow.yaml
+    with:
+      service_name: first-service 
+      env_name: dev
+    secrets:
+        API_TOKEN: ${{ secrets.DEV }}
+      
+
+  stage:
+     needs: dev
+     uses: ./.github/workflows/reusable-workflow.yaml
+     with:
+       env_name: staging
+       replicas: 3
+       log_level: debug
+     secrets:
+       API_TOKEN: ${{ secrets.DEV }}
+
+    
+    
+
+      
+       
+      
