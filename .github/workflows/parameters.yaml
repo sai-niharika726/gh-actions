@@ -1,0 +1,27 @@
+name: parameterized workflow
+on:
+  workflow_dispatch:
+     inputs:
+      environment:
+         type: choice
+         options:
+           - dev
+           - staging
+           - production
+      dryrun:
+        type: boolean
+        default: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: prints the values choosen by user
+        run: echo ${{ inputs.environment }} and ${{ inputs.dryrun }}
+
+ 
+    
+        
+  
+
+
