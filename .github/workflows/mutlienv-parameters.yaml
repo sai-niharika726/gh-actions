@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: validation
-        if: ${{ inputs.replicas <= 0 }}
+        if: ${{ inputs.replicas <= 2 }}
         run: echo "replicas should be Greater than 2"
   deploy:
     runs-on: ubuntu-latest
