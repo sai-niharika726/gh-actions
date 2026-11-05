@@ -41,7 +41,7 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: docker-images
-          path: imageartifacts/myimage.tar
+          path: imageartifacts
 
       - name: docker tag and push image to dockerhub
         env:
