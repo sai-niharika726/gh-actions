@@ -1,0 +1,33 @@
+name: Multiple env with parameters
+on:
+ workflow_dispatch:
+   inputs:
+     environment:
+       type: string
+       options:
+         - dev
+         - staging
+         - production
+
+    replicas:
+      type: number
+
+
+    deploy:
+      type: boolean
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: validation
+        if: ${{ input.replicas >=0 }}
+        run: echo "Greater than 2"
+  deploy:
+    needs: validate
+    if: ${{ inputs.deploy == true }}
+    run: echo "${{ inputs.environment }} and replica count is - ${{ inputs.replicas }}"
+
+  notify:
+    needs: validation
+    run: echo "Deployment completed successfully"
