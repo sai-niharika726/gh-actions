@@ -27,10 +27,12 @@ jobs:
     needs: validate
     if: ${{ inputs.dryrun == false }}
     steps:
-      - name: testing
+      - name: Deploy to stage
         run: echo "Deploying ${{ inputs.version }} to  ${{ inputs.environment }}"
         
-
+      - name : Deploy to dev
+        if: ${{ inputs.dryrun == true}}
+        run: echo "deploying to dev"
     
 
  
