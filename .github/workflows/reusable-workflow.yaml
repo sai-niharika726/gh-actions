@@ -1,30 +1,44 @@
-name: reusable workflow
+name: reusable workflow file
 on:
- workflow_dispatch: 
- workflow_call: 
-  inputs:
-    env_name:
-      type: string
-      required: true
-      
-    replicas: 
+ workflow_dispatch:
+ workflow_call:
+   inputs:
+     service_name: 
+       type: string
+       required: true
+     env_name:
+       type: string
+       required: true
+     replicas:
        type: number
-       default : 2
-
-    debug:
-        type: boolean
-        default: false
-     
-jobs:
-  build:
-   runs-on: ubuntu-latest
-   steps:
-     - name: Setting env variables and secrets
-       run: echo ${{ inputs.env_name }},${{ inputs.replicas }},${{ inputs.debug }}
-        
-
-
-        
-        
+       default: 2
+     log_level:
+      type: string
+      default: info
+   secrets:
+     API_TOKEN:
+       required: true
        
-         
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name:
+        run:  echo " Validating ${{ inputs.service_name }} config for ${{ inputs.env_name }}
+
+  deploy:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploying
+      env:
+        secrets: ${{ secrets.API_TOKEN }}
+      run: test -n "$API_TOKEN" && echo "Token is set"
+      run: echo "Deployed  ${{ inputs.service_name }} with ${{ inputs.replicas }} in ${{ inputs.env_name }} and ${{ inputs.log_level }}
+      
+   
+
+
+  
+   
+  
