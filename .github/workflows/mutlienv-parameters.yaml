@@ -19,7 +19,10 @@ jobs:
     steps:
       - name: validation
         if: ${{ inputs.replicas <= 2 }}
-        run: echo "replicas should be Greater than 2"
+        run: | 
+          echo "replicas should be Greater than 2"
+          exit 1
+        
   deploy:
     runs-on: ubuntu-latest
     needs: validate
