@@ -23,8 +23,8 @@ on:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    steps:
-      - name:
+    steps: 
+      - name: validate config
         run:  echo " Validating ${{ inputs.service_name }} config for ${{ inputs.env_name }}"
 
   deploy:
@@ -33,7 +33,7 @@ jobs:
     steps:
     - name: Deploying
       env:
-        secrets: ${{ secrets.API_TOKEN }}
+        API_TOKEN: ${{ secrets.API_TOKEN }}
       run: |
          test -n "$API_TOKEN" && echo "Token is set"
          echo "Deployed  ${{ inputs.service_name }} with ${{ inputs.replicas }} in ${{ inputs.env_name }} and ${{ inputs.log_level }}"
