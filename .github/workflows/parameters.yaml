@@ -11,13 +11,16 @@ on:
       dryrun:
         type: boolean
         default: true
+      version:
+        type: string
+        required: true
 
 jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
       - name: prints the values choosen by user
-        run: echo ${{ inputs.environment }} and ${{ inputs.dryrun }}
+        run: echo "${{ inputs.environment }} and ${{ inputs.dryrun }} and ${{ inputs.version }}" 
 
  
     
