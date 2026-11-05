@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: docker-images
-          path: imageartifacts
+          path: imageartifacts/myimage.tar
         
 
   push-image-to-docker-hub:
@@ -41,9 +41,12 @@ jobs:
         uses: actions/download-artifact@v5
         with:
           name: docker-images
-          path: imageartifacts
+          path: imageartifacts/myimage.tar
 
       - name: docker tag and push image to dockerhub
+        env:
+          username: ${{ vars.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
         run: |
           docker tag myimage $username/ghactions-artifact:v1
           docker push $username/ghactions-artifact:v1
