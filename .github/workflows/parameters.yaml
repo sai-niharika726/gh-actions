@@ -23,10 +23,11 @@ jobs:
         run: echo "${{ inputs.environment }} and ${{ inputs.dryrun }} and ${{ inputs.version }}"
 
   deploy:
-     needs: validate
-     steps:
+    runs-on: ubuntu-latest
+    needs: validate
+    steps:
        - name: abc
-         if: ${{ inputs.dryrun == "false" }}
+         if: ${{ inputs.dryrun == 'false' }}
          run: echo "Deploying $version to $environment "
         
 
