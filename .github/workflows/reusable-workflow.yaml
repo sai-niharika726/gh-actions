@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name:
-        run:  echo " Validating ${{ inputs.service_name }} config for ${{ inputs.env_name }}
+        run:  echo " Validating ${{ inputs.service_name }} config for ${{ inputs.env_name }}"
 
   deploy:
     needs: validate
@@ -36,7 +36,7 @@ jobs:
         secrets: ${{ secrets.API_TOKEN }}
       run: |
          test -n "$API_TOKEN" && echo "Token is set"
-         echo "Deployed  ${{ inputs.service_name }} with ${{ inputs.replicas }} in ${{ inputs.env_name }} and ${{ inputs.log_level }}
+         echo "Deployed  ${{ inputs.service_name }} with ${{ inputs.replicas }} in ${{ inputs.env_name }} and ${{ inputs.log_level }}"
       
    
 
