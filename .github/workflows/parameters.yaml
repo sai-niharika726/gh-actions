@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: validate
     steps:
-       - name: abc
+       - name: testing
          if: ${{ inputs.dryrun == 'false' }}
          run: echo "Deploying $version to $environment "
         
