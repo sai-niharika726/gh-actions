@@ -25,6 +25,7 @@ jobs:
           docker login --username "$username" --password "$password"
           docker build -t myimage Fruit-app-store
           docker images
+      
 
       - name: upload artifact
         uses: actions/upload-artifact@v5
