@@ -25,10 +25,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: validate
-    if: ${{ inputs.dryrun == 'false' }}
+    if: ${{ inputs.dryrun == false }}
     steps:
       - name: testing
-        run: echo "Deploying ${{ inputs.version }} to $environment ${{ inputs.environment }}"
+        run: echo "Deploying ${{ inputs.version }} to  ${{ inputs.environment }}"
         
 
     
