@@ -16,11 +16,12 @@ jobs:
      needs: dev
      uses: ./.github/workflows/reusable-workflow.yaml
      with:
+       service_name: first-service
        env_name: staging
        replicas: 3
        log_level: debug
      secrets:
-       API_TOKEN: ${{ secrets.DEV }}
+       API_TOKEN: ${{ secrets.STAGE }}
 
     
     
