@@ -27,7 +27,7 @@ jobs:
           docker images
 
       - name: upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v5
         with:
           name: docker-images
           path: imageartifacts
@@ -38,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: copy artifacts from pull code job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v5
         with:
           name: docker-images
           path: imageartifacts
