@@ -7,7 +7,7 @@ on:
          options:
            - dev
            - staging
-          default: dev
+         default: dev
       dryrun:
         type: boolean
         default: true
