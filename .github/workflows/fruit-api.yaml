@@ -54,7 +54,7 @@ jobs:
 
         - name: tagging and pushing image
           run: | 
-           docker login --username ${{ env.docker_username }} --pasword ${{ secrets.docker_password }}
+           docker login --username ${{ env.docker_username }} --password ${{ secrets.docker_password }}
            docker tag myimage ${{ env.docker_username }}/${{ inputs.repository_name }}: v1
            docker push ${{ env.docker_username }}/${{ inputs.repository_name }}: v1
 
