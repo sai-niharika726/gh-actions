@@ -59,11 +59,13 @@ jobs:
            docker tag myimage ${{ env.docker_username }}/${{ inputs.repository_name }}: v1
            docker push ${{ env.docker_username }}/${{ inputs.repository_name }}: v1
 
-notification:
-  runs-on: ubuntu-latest
-  needs: pulling-sourcecode
-  if: success()
-  run: echo "Build is success"
+  notification:
+    runs-on: ubuntu-latest
+    needs: pullingsourcecode
+    if: failure()
+    steps:
+       - name: checking the build
+         run: echo "Build is failed"
   
   
            
