@@ -44,7 +44,7 @@ jobs:
         - name: building image
           run: |
             docker login --username ${{ env.docker_username }} --password ${{ secrets.docker_password }}  
-            docker build -t myimage .
+            docker build -t myimage Fruit-app-store/
             
 
         - name: trivy scan
