@@ -6,25 +6,25 @@ on:
     branches:
       - main
 
-inputs:
-  repository_name: bsainiharika
-  type: string
-  default: true
-
-  environments:
-    type: choose
-    default: dev
-    options:
-      - dev
-      - staging
-      - prod
-  version:
-    type: text
-    default: required
-
-  dry_run:
-    type: boolean
+ inputs:
+    repository_name: bsainiharika
+    type: string
     default: true
+
+    environments:
+      type: choose
+      default: dev
+      options:
+        - dev
+        - staging
+        - prod
+    version:
+      type: text
+      default: required
+
+    dry_run:
+      type: boolean
+      default: true
     
     
 env:
@@ -33,14 +33,14 @@ env:
   
 
 jobs:
-  pulling sourcecode:
+  pullingsourcecode:
     runs-on: ubuntu-latest
     steps:
         - name: pull code from github
-          uses: actions/checkout
-          reference:
-            path: sai-niharika726/DEVOPS
-            branches: main
+          uses: actions/checkout@v5
+          with:
+              repository: sai-niharika726/DEVOPS
+              reference: main
 
 
         - name: building image
@@ -50,10 +50,9 @@ jobs:
             
 
         - name: trivy scan
-          run: trivy image myimage
-          if : severity == 'critical' or severity == 'HIGH'
-          exit 1
-          run: echo "Image has critical or High vulnerabilites"
+          run: |
+           trivy image --serverity== HIGH,CRITICAL --exit-code 1 myimage
+           echo "Image has critical or High vulnerabilites"
 
         - name: tagging and pushing image
           run: | 
