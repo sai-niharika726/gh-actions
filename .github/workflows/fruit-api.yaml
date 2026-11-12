@@ -1,30 +1,29 @@
 name: fruit-api-service
 on:
- workflow_dispatch:
  pull_request:
  push:
     branches:
       - main
+ workflow_dispatch: 
+   inputs:
+     repository_name: 
+       type: string
+       default: required
 
- inputs:
-    repository_name: bsainiharika
-    type: string
-    default: true
+     environments:
+        type: choice
+        default: dev
+        options:
+          - dev
+          - staging
+          - prod
+     version:
+       type: string
+       default: required
 
-    environments:
-      type: choose
-      default: dev
-      options:
-        - dev
-        - staging
-        - prod
-    version:
-      type: text
-      default: required
-
-    dry_run:
-      type: boolean
-      default: true
+     dry_run:
+       type: boolean
+       default: true
     
     
 env:
