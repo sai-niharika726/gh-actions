@@ -44,7 +44,7 @@ jobs:
 
         - name: building image
           run: |
-            docker login --username ${{ env.docker_username }} --pasword-stdin ${{ secrets.docker_password }}
+            docker login --username ${{ env.docker_username }} --pasword-stdin 
             docker build -t myimage Frit-app-store
             
 
