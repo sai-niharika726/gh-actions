@@ -30,14 +30,11 @@ jobs:
 
       - name: run the trivy scan
         run: |
-          trivy image ${{ inputs.tag_name  }} --severity HIGH,CRITICAL 
-          
-      - name: upload artifacts
-        if: always()
-        uses: actions/upload-artifact@v5
+          trivy image ${{ inputs.tag_name  }} >> reports/vulnerability-report
+      - uses: actions/upload-artifact@v5
         with:
           name: vulnerability-report
-          path: vulnerability-report
+          path: reports/
           retention-days: 5
         
   report:
@@ -49,6 +46,7 @@ jobs:
       with:
         name: vulnerability-report
         path: report
+        
     - name: print report
       run: report/vulnerability-report
   push:
