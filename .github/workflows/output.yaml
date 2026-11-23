@@ -23,7 +23,7 @@ jobs:
           echo "tag=$sha" >> "$GITHUB_OUTPUT"
       - name: build a docker image
         run: |
-          docker login --username ${{ env.docker_username }} --password {{ secrets.docker_password }}
+          docker login --username ${{ env.docker_username }} --password ${{ secrets.docker_password }}
           docker build -t ${{ steps.image.outputs.tag }} Fruit-app-store/Dockerfile
 
     
