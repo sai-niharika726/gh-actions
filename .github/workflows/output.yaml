@@ -37,7 +37,7 @@ jobs:
         uses: actions/upload-artifact@v5
         with:
           name: vulnerability-report
-          path: trivy-report
+          path: vulnerability-report
           retention-days: 5
         
   report:
@@ -48,7 +48,9 @@ jobs:
       uses: actions/download-artifact@v5
       with:
         name: vulnerability-report
-        path: trivy-report
+        path: report
+    - name: print report
+      run: report/vulnerability-report
   push:
     needs: [app-code,report] 
     runs-on: ubuntu-latest
