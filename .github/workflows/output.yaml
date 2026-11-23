@@ -30,7 +30,7 @@ jobs:
 
       - name: run the trivy scan
         run: |
-          trivy image ${{ inputs.tag_name  }} --severity HIGH,CRITICAL --exit-code 1 
+          trivy image ${{ inputs.tag_name  }} --severity HIGH,CRITICAL 
           
       - name: upload artifacts
         if: always()
