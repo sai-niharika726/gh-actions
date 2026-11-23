@@ -15,6 +15,10 @@ jobs:
     steps:
       - name: pulling code from gh
         uses: actions/checkout@v5
+        with:
+          repository: sainiharika-726/DEVOPS
+          ref: master
+          path: FRUIT-APP-STORE
         
 
       - name: generate sha tag
@@ -25,7 +29,7 @@ jobs:
       - name: build a docker image
         run: |
           docker login --username ${{ env.docker_username }} --password ${{ secrets.docker_password }}
-          docker build -f FRUIT-APP-STORE/Dockerfile -t ${{ steps.image.outputs.tag }} FRUIT-APP-STORE
+          docker build -t ${{ steps.image.outputs.tag }} FRUIT-APP-STORE
     
       - name: Install Trivy
         uses: aquasecurity/setup-trivy@v0.3.1
