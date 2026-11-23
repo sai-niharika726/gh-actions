@@ -30,7 +30,12 @@ jobs:
 
       - name: run the trivy scan
         if: success()
-        run: trivy image ${{ inputs.tag_name  }}
+        run: trivy image ${{ inputs.tag_name  }} >> vulnerability-report
+
+     
+      
+        
+      
 
       
 
