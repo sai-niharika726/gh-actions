@@ -1,0 +1,39 @@
+name: working on output files
+on:
+ push:
+   branches:
+      - master
+
+env:
+  docker_username: bsainiharika
+  docker_password: $DOCKER_PASSWORD
+
+jobs:
+  app-code:
+    runs-on: ubuntu-latest
+    steps:
+      - name: pulling code from gh
+        uses: actions/checkout@v5
+
+      - name: generate sha tag
+        id: image
+        run: | 
+          sha=$(git rev-parse --short HEAD)
+          echo "tag=$sha" >> "$GITHUB_OUTPUT"
+      - name: build a docker image
+        run: |
+          echo "$docker_password" 
+          docker login --username ${{ env.docker_username }} --password-stdin
+          docker build -t ${{ steps.image.outputs.tag }} Fruit-app-store/Dockerfile
+
+    
+      - name: Install Trivy
+        uses: aquasecurity/setup-trivy@v0.3.1
+
+      - name: run the trivy scan
+        if: success()
+        run: trivy image ${{ steps.image.outputs.tag }}
+
+      
+
+      
