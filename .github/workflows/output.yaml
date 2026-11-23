@@ -37,8 +37,8 @@ jobs:
 
       - name: pushing to dockerhub
         run: |
-          docker tag ${{ inputs.tag_name }} bsainiharika/GHactions-fruit-app-store:${{ inputs.tag_name}}-v1
-          docker push bsainiharika/GHactions-fruit-app-store:${{ inputs.tag_name}}-v1
+          docker tag ${{ inputs.tag_name }} bsainiharika/ghactions-fruit-app-store:${{ inputs.tag_name}}-v1
+          docker push bsainiharika/ghactions-fruit-app-store:${{ inputs.tag_name}}-v1
 
       - name: confirmation
         if: success()
