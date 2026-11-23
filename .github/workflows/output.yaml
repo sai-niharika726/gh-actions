@@ -5,10 +5,7 @@ on:
      tag_name:
        type: string
        required: true
- push:
-   branches:
-      - master
-      - main
+
 env:
   docker_username: bsainiharika
   docker_password: $DOCKER_PASSWORD
