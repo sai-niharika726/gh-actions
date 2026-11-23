@@ -29,21 +29,36 @@ jobs:
         uses: aquasecurity/setup-trivy@v0.3.1
 
       - name: run the trivy scan
-        if: success()
         run: |
-          trivy image ${{ inputs.tag_name  }} >> vulnerability-report
-          ls -lart
-          cat vulnerability-report
-
+          trivy image ${{ inputs.tag_name  }} --severity HIGH,CRITICAL --exit-code 1 
+          
+      - name: upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v5
+        with:
+          name: vulnerability-report
+          path: trivy-report
+          retention-days: 5
+        
+  report:
+    needs: app-code
+    runs-on: ubuntu-latest
+    steps:
+    - name: download artifact
+      uses: actions/download-artifact@v5
+      with:
+        name: vulnerability-report
+        path: trivy-report
+  push:
+    needs: [app-code,report] 
+    runs-on: ubuntu-latest
+    steps:
       - name: pushing to dockerhub
         run: |
           docker tag ${{ inputs.tag_name }} bsainiharika/ghactions-fruit-app-store:${{ inputs.tag_name}}-v1
           docker push bsainiharika/ghactions-fruit-app-store:${{ inputs.tag_name}}-v1
 
-      - name: confirmation
-        if: success()
-        run: echo "pushed to docker hub"
-
+      
      
         
          
