@@ -28,10 +28,19 @@ jobs:
       - name: Install Trivy
         uses: aquasecurity/setup-trivy@v0.3.1
 
+      - name: creating a folder and file
+        run: |
+          mkdir reports
+          cd reports
+          touch vulnerability-report
+
       - name: run the trivy scan
         run: |
-          trivy image ${{ inputs.tag_name  }} >> reports/vulnerability-report
-      - uses: actions/upload-artifact@v5
+          trivy image ${{ inputs.tag_name  }} --severity HIGH,CRITICAL --exit-code 1 >> reports/vulnerability-report
+          
+      - name: upload-artifact
+        if: always()
+        uses: actions/upload-artifact@v5
         with:
           name: vulnerability-report
           path: reports/
