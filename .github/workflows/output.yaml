@@ -1,5 +1,6 @@
 name: working on output files
 on:
+ workflow_dispatch:
  push:
    branches:
       - master
