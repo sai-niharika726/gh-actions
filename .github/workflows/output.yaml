@@ -16,7 +16,7 @@ jobs:
       - name: pulling code from gh
         uses: actions/checkout@v5
         with:
-          repository: sainiharika-726/DEVOPS
+          repository: sai-niharika/DEVOPS
           ref: master
           path: FRUIT-APP-STORE
         
