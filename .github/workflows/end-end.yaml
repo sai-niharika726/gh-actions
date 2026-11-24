@@ -47,6 +47,7 @@ jobs:
          
          
      - name: create a directory
+       if: always()
        run: mkdir vulnerability-reports
        
      - name: upload artifacts
