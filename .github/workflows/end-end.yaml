@@ -47,6 +47,7 @@ jobs:
          
          
      - name: upload artifact
+       if: always()
        uses: actions/upload-artifact@v5
        with:
          name: trivy-report
