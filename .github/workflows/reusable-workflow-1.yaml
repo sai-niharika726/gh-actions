@@ -1,0 +1,69 @@
+name: creating reusable workflow
+on:
+  workflow_call: 
+      inputs:
+        image_name: 
+          type: string
+          required: true
+          description: docker image name
+
+        dockerfile_path:
+          type: string
+          required: true
+          description: provide the dockerfile path
+
+        docker_username:
+          type: string
+          required: true
+
+      secrets:
+       docker_password: 
+          type: string
+          required: true
+      
+          
+
+env:
+  repository_name: DEVOPS
+  owner: sai-niharika726
+
+
+jobs:
+  code-checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - name: code checkout
+        uses: actions/checkout@v5
+        with:
+          repository: ${{ env.owner }}/${{ env.repository_name }}
+          ref: master
+
+  build:
+    needs: code-checkout
+    runs-on: ubuntu-latest
+    steps:
+       - name: build a docker image
+         run: |
+           docker login --username ${{ inputs.docker_username }} --password ${{ secrets.docker_password }}
+           docker build -t ${{ inputs.image_name }} ${{ inputs.dockerfile_path }}
+
+       - name: install trivy
+         uses: aquasecurity/trivy@v0.3.1
+
+       - name: scan image
+         if: success()
+         run: trivy image ${{ inputs.image_name }} --severity CRITICAL,HIGH --exit-code 1 >> ${{ inputs.image_name }}.txt
+
+       - name: upload report
+         if: always()
+         uses: actions/upload-artifacts@v5
+         with:
+           name: vulnerability-reports/
+           path: vulnerability-reports/${{ inputs.image_name }}.txt
+         
+         
+         
+   
+
+          
+   
