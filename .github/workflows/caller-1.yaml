@@ -12,6 +12,7 @@ jobs:
         image_name: japp
         dockerfile_path: jewellery-store/Dockerfile
         docker_username: bsainiharika
+        build_context: jewellery-store/
 
       secrets:
          docker_password: ${{ secrets.DOCKER_PASSWORD }}
