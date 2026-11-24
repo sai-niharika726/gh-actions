@@ -48,6 +48,7 @@ jobs:
        run: |
          trivy image ${{ inputs.image_name }} >> vulnerability-report
          ls -lart
+         cat vulnerability-report
        
 
     
