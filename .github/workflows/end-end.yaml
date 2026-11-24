@@ -31,4 +31,4 @@ jobs:
          docker build -t ${{ inputs.image_name }} Fruit-app-store/
          docker images | grep ${{ inputs.image_name }}
          if: success()
-         run: echo "tag is ${{ inputs.image_name }}
+         run: echo "tag is ${{ inputs.image_name }}"
