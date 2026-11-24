@@ -1,5 +1,6 @@
 name: building jewellery-app application
 on:
+ workflow_dispatch: 
  push: 
    branches:
      - master
