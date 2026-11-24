@@ -43,16 +43,19 @@ jobs:
        if: success()
        id: security_scan
        run: |
-         trivy image ${{ inputs.image_name }} --severity CRITICAL,HIGH --exit-code 1 >> vulnerability-report.txt
+         trivy image ${{ inputs.image_name }} --severity CRITICAL,HIGH --exit-code 1 >> ${{ inputs.image_name }}.txt
          
          
-     - name: upload artifact
+     - name: create a directory
+       run: mkdir vulnerability-reports
+       
+     - name: upload artifacts
        if: always()
        uses: actions/upload-artifact@v5
        with:
          name: trivy-report
-         path: vulnerability-report
-         run: ls -lart
+         path: vulnerability-reports/
+         
 
      - name: notification
        if: always()
