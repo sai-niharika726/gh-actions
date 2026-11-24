@@ -8,9 +8,10 @@ on:
    push:
       branches:
         - main 
+concurrency: 
+   group: build-${{ github.ref_name }}
+   
       
-
-
 jobs:
   ci:
    runs-on: ubuntu-latest
@@ -20,7 +21,7 @@ jobs:
      
    steps:
      - name: checkout application code
-       uses: actions/checout@v5
+       uses: actions/checkout@v5
        with:
          repository: bsainiharika/DEVOPS
          ref: master
