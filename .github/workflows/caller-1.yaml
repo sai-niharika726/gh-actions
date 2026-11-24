@@ -1,0 +1,17 @@
+name: building jewellery-app application
+on:
+ push: 
+   branches:
+     - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: building japp application
+        uses: ./.github/workflows/reusable-workflow-1.yaml
+        with:
+          image_name: japp
+          dockerfile_path: jewellery-store/
+          docker_username: bsainiharika
+          docker_password: ${{ secrets.Docker_password }}
