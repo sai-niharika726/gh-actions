@@ -43,13 +43,19 @@ jobs:
        if: success()
        id: security_scan
        run: |
-         trivy image ${{ inputs.image_name }} >> vulnerability-report
-         ls -lart
-         cat vulnerability-report
+         trivy image ${{ inputs.image_name }} --severity CRITICAL,HIGH --exit-code 1 >> vulnerability-report.txt
+         
+         
+     - name: upload artifact
+       uses: actions/upload-artifact@v5
+       with:
+         name: trivy-report
+         path: vulnerability-report
+         run: ls -lart
 
      - name: notification
-       if: failure()
-       run: echo "Docker pipeline is failed. please check the logs"
+       if: always()
+       run: echo "pipeline execution completed"
        
        
 
