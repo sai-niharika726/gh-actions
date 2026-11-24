@@ -5,9 +5,7 @@ on:
        image_name:
          type: string
          required: true
-   push:
-      branches:
-        - main 
+   
 concurrency: 
    group: build-${{ github.ref_name }}
    
