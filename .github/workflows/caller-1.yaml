@@ -10,7 +10,7 @@ jobs:
       uses: ./.github/workflows/reusable-workflow-1.yaml
       with:
         image_name: japp
-        dockerfile_path: jewellery-store/
+        dockerfile_path: jewellery-store/Dockerfile
         docker_username: bsainiharika
 
       secrets:
