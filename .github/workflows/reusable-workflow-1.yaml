@@ -11,14 +11,14 @@ on:
           type: string
           required: true
           description: provide the dockerfile path
-
+        
         docker_username:
           type: string
           required: true
-
-        docker_password:
-          type: string
-          required: true
+          
+      secrets:
+         docker_password:
+         required: true
 
 env:
   repository_name: DEVOPS
@@ -46,7 +46,7 @@ jobs:
            docker build -t ${{ inputs.image_name }} ${{ inputs.dockerfile_path }}
 
        - name: install trivy
-         uses: aquasecurity/trivy@v0.3.1
+         uses: aquasecurity/setup-trivy@v0.3.1
 
        - name: scan image
          if: success()
