@@ -30,5 +30,7 @@ jobs:
          docker login --username ${{ env.docker_username }} --password ${{ secrets.docker_password }}
          docker build -t ${{ inputs.image_name }} Fruit-app-store/
          docker images | grep ${{ inputs.image_name }}
-         if: success()
-         run: echo "tag is ${{ inputs.image_name }}"
+
+     - name: display tag name
+       if: success()
+       run: echo "tag is ${{ inputs.image_name }}"
