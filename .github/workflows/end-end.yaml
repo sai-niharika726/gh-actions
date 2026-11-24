@@ -4,6 +4,7 @@ on:
      inputs:
        image_name:
          type: string
+         default: fruit-app-store:v1
          required: true
    
 concurrency: 
@@ -36,7 +37,7 @@ jobs:
        run: echo "tag is ${{ inputs.image_name }}"
 
      - name: install trivy
-       uses: aquasecurity/setup-trivy@v5
+       uses: aquasecurity/setup-trivy@v4
        with:
          version: v0.3.1
 
