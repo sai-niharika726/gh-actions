@@ -52,12 +52,7 @@ jobs:
          if: success()
          run: trivy image ${{ inputs.image_name }} --severity CRITICAL,HIGH --exit-code 1 >> ${{ inputs.image_name }}.txt
 
-       - name: upload report
-         if: always()
-         uses: actions/upload-artifacts@v5
-         with:
-           name: vulnerability-reports/
-           path: vulnerability-reports/${{ inputs.image_name }}.txt
+       
          
          
          
