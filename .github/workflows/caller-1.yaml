@@ -7,12 +7,12 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: building japp application
-        uses: ./.github/workflows/reusable-workflow-1.yaml
-        with:
-          image_name: japp
-          dockerfile_path: jewellery-store/
-          docker_username: bsainiharika
-          docker_password: ${{ secrets.Docker_password }}
+      uses: ./.github/workflows/reusable-workflow-1.yaml
+      with:
+        image_name: japp
+        dockerfile_path: jewellery-store/
+        docker_username: bsainiharika
+
+      secrets:
+         docker_password: ${{ secrets.DOCKER_PASSWORD }}
+
