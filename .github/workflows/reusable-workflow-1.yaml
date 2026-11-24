@@ -16,16 +16,14 @@ on:
           type: string
           required: true
 
-      secrets:
-       docker_password: 
+        docker_password:
           type: string
           required: true
-      
-          
 
 env:
   repository_name: DEVOPS
   owner: sai-niharika726
+
 
 
 jobs:
