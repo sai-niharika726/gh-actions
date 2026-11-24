@@ -1,8 +1,5 @@
 name: triggering a build
 on:
-   push:
-     branches:
-       - main
    workflow_dispatch: 
      inputs:
        image_name:
@@ -49,6 +46,11 @@ jobs:
          trivy image ${{ inputs.image_name }} >> vulnerability-report
          ls -lart
          cat vulnerability-report
+
+     - name: notification
+       if: failure()
+       run: echo "Docker pipeline is failed. please check the logs"
+       
        
 
     
