@@ -15,6 +15,10 @@ on:
         docker_username:
           type: string
           required: true
+
+        build_context:
+          type: string
+          required: true 
           
       secrets:
          docker_password:
