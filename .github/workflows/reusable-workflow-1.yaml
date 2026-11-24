@@ -18,7 +18,7 @@ on:
           
       secrets:
          docker_password:
-         required: true
+           required: true
 
 env:
   repository_name: DEVOPS
